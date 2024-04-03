@@ -3,13 +3,13 @@ import Navbar from "./ui/navbar";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col justify-center">
+    <main className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex flex-col items-center gap-10">
+      <div className="flex flex-col items-center gap-10 mt-28">
         <h1 className="text-[60px] font-bold text-color">
           CEPAT TANGGAP SIGAP
         </h1>
-        <p className="font-semibold text-2xl">
+        <p className="font-semibold text-2xl text-color">
           Laporkan Kejadian Darurat Di Lingkungan Anda
         </p>
         <p className="text-xl">Kami Siap Siaga Melayani Laporan Anda</p>
