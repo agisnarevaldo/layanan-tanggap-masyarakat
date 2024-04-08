@@ -18,6 +18,7 @@ const config: Config = {
       },
       textColor: {
         "color": "#3B3B3B",
+        "primary": "#436850",
       },
     },
   },
