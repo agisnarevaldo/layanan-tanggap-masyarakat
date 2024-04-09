@@ -1,6 +1,7 @@
 interface ButtonProps {
   children: React.ReactNode;
   classname?: string;
+  type?: "button" | "submit" | "reset";
 }
 
 export default function Button({ children, classname }: ButtonProps) {
