@@ -1,4 +1,5 @@
 interface InputProps {
+  id: string;
   type?:
     | "button"
     | "text"
@@ -17,14 +18,24 @@ interface InputProps {
     | "color";
   placeholder: string;
   className?: string;
+  autoComplete: string;
 }
 
-const Input = ({ type, placeholder, className }: InputProps) => {
+const Input = ({
+  id,
+  type,
+  placeholder,
+  className,
+  autoComplete,
+}: InputProps) => {
   return (
     <input
+      id={id}
       type={type}
       placeholder={placeholder}
       className={`py-2 px-4 border rounded-full ${className}`}
+      required
+      autoComplete={autoComplete}
     />
   );
 };
