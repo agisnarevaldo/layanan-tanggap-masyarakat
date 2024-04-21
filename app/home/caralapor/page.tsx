@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const CaraLapor = () => {
   return (
-    <main>
+    <main className="pb-8">
       <h1 className="text-3xl font-semibold text-center mb-8">
         Berikut Cara Melapor:
       </h1>
