@@ -1,13 +1,21 @@
+"use client";
+
 import Image from "next/image";
 import Button from "../ui/button";
+import { useUser } from "@clerk/nextjs";
 
 export default function Home() {
+  const { user, isLoaded, isSignedIn } = useUser();
+
+  if (!isLoaded || !isSignedIn) {
+    return null;
+  }
   return (
     <main>
       <div className="ml-20 flex justify-between items-center text-color">
         <div className="flex flex-col gap-2">
           <h1 className="leading-relaxed text-3xl font-semibold">
-            Selamat Siang Jhon 👋
+            Hallo {user.username?.toUpperCase()} 👋
             <br /> Masalah apa yang bisa <br /> kami bantu?
           </h1>
           <Button classname="w-max">Laporkan Masalah</Button>
