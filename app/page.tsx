@@ -2,18 +2,24 @@ import Image from "next/image";
 import Navbar from "./ui/navbar";
 import Contact from "./ui/contact";
 import Footer from "./ui/footer";
+import Link from "next/link";
 
 const Home = () => {
   return (
     <div className="flex flex-col items-center gap-10 pt-28">
-      <h1 className="text-[60px] font-bold text-color">CEPAT TANGGAP SIGAP</h1>
+      <h1 className="text-[60px] font-bold text-color animate-shake animate-once animate-duration-[1500ms]">
+        CEPAT TANGGAP SIGAP
+      </h1>
       <p className="font-semibold text-2xl text-color">
         Laporkan Kejadian Darurat Di Lingkungan Anda
       </p>
       <p className="text-xl">Kami Siap Siaga Melayani Laporan Anda</p>
-      <button className="h-10 px-6 font-semibold rounded-full bg-primary text-white">
+      <Link
+        href="/home/laporan"
+        className="flex items-center h-10 px-6 font-semibold rounded-full bg-primary text-white"
+      >
         Laporkan Masalah
-      </button>
+      </Link>
     </div>
   );
 };
