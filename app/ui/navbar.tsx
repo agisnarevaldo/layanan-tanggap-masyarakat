@@ -10,7 +10,7 @@ export default function Navbar() {
         <Link href="#about">Tentang</Link>
         <Link href="#cara">Cara Melapor</Link>
         <Link href="#contact">Kontak Kami</Link>
-        <Link href="/login">
+        <Link href="/sign-in">
           <button className="h-10 px-6 font-semibold rounded-full bg-primary text-white hover:bg-opacity-90">
             Login
           </button>
