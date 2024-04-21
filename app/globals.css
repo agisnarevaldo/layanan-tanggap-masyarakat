@@ -31,3 +31,18 @@ body {
     text-wrap: balance;
   }
 }
+
+.cl-formButtonPrimary {
+  font-size: 14px;
+  text-transform: none;
+  border: none;
+  outline: none;
+  border-radius: 9999px;
+  background-color: #436850;
+}
+ 
+.cl-formButtonPrimary:hover,
+.cl-formButtonPrimary:focus,
+.cl-formButtonPrimary:active {
+  background-color: #436850ec;
+}
