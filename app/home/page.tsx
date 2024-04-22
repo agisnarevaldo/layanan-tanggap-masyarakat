@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Button from "../ui/button";
 import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 export default function Home() {
   const { user, isLoaded, isSignedIn } = useUser();
@@ -18,7 +19,9 @@ export default function Home() {
             Hallo {user.username?.toUpperCase()} 👋
             <br /> Masalah apa yang bisa <br /> kami bantu?
           </h1>
-          <Button classname="w-max">Laporkan Masalah</Button>
+          <Link href="/lapor">
+            <Button classname="w-max">Laporkan Masalah</Button>
+          </Link>
         </div>
         <Image src="/images/dec.svg" width={444} height={542} alt="image" />
       </div>
