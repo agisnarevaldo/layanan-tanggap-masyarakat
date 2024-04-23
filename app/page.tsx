@@ -3,11 +3,12 @@ import Navbar from "./ui/navbar";
 import Contact from "./ui/contact";
 import Footer from "./ui/footer";
 import Link from "next/link";
+import Button from "./ui/button";
 
 const Home = () => {
   return (
     <div className="flex flex-col items-center gap-10 pt-28">
-      <h1 className="text-[60px] font-bold text-color animate-shake animate-once animate-duration-[1500ms]">
+      <h1 className="max-w-min text-[60px] font-bold text-color animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-[#436850] pr-5">
         CEPAT TANGGAP SIGAP
       </h1>
       <p className="font-semibold text-2xl text-color">
@@ -16,9 +17,9 @@ const Home = () => {
       <p className="text-xl">Kami Siap Siaga Melayani Laporan Anda</p>
       <Link
         href="/home/laporan"
-        className="flex items-center h-10 px-6 font-semibold rounded-full bg-primary text-white"
+        // className="flex items-center h-10 px-6 font-semibold rounded-full bg-primary text-white"
       >
-        Laporkan Masalah
+        <Button classname="w-40 font-semibold">Laporkan</Button>
       </Link>
     </div>
   );
