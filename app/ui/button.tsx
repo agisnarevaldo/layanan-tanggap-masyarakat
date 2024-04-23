@@ -7,9 +7,9 @@ interface ButtonProps {
 export default function Button({ children, classname }: ButtonProps) {
   return (
     <button
-      className={`h-10 px-6 font-semibold rounded-full bg-primary text-white ${classname} hover:bg-opacity-90`}
+      className={`before:ease relative rounded-full bg-primary h-10 overflow-hidden border text-white shadow-2xl transition-all before:absolute before:right-0 before:top-0 before:h-12 before:w-6 before:translate-x-12 before:rotate-6 before:bg-white before:opacity-10 before:duration-700 hover:shadow-green-500 hover:before:-translate-x-40 ${classname}`}
     >
-      {children}
+      <span className="relative z-10 tracking-wide">{children}</span>
     </button>
   );
 }
