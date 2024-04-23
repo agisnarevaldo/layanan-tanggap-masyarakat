@@ -19,8 +19,8 @@ export default function Home() {
             Hallo {user.username?.toUpperCase()} 👋
             <br /> Masalah apa yang bisa <br /> kami bantu?
           </h1>
-          <Link href="/lapor">
-            <Button classname="w-max">Laporkan Masalah</Button>
+          <Link className="w-1/2" href="/lapor">
+            <Button classname="w-full">Laporkan Masalah</Button>
           </Link>
         </div>
         <Image src="/images/dec.svg" width={444} height={542} alt="image" />
