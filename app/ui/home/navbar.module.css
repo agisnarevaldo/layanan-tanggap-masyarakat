@@ -1,0 +1,23 @@
+.link {
+  display: inline-block;
+  text-decoration: none;
+  color: #3b3b3b;
+  font-family: sans-serif;
+}
+
+.link:after {
+  display: block;
+  content: "";
+  width: inherit;
+  border-bottom: solid 3px #436850;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.link:hover:after {
+  transform: scaleX(1);
+}
+
+.link:after {
+  transform-origin: left;
+}
