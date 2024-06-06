@@ -8,8 +8,9 @@
 
 # testing
 /coverage
-/app/[id]
-/app/api/hello
+/app/[id]/
+/app/api/hello/
+/pages/api/db.sql
 
 # next.js
 /.next/
