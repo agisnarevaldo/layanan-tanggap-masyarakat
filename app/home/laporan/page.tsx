@@ -6,6 +6,16 @@ import { useEffect, useState } from "react";
 const LaporList = () => {
   const [lapor, setLapor] = useState([]);
 
+  const handleDelete = async (id: number) => {
+    if (confirm("Are you sure you want to delete this item?")) {
+      const response = await fetch(`/api/reports/${id}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      setLapor(lapor.filter((item: any) => item.id !== id));
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("/api/read");
@@ -15,6 +25,8 @@ const LaporList = () => {
 
     fetchData();
   }, []);
+
+  // console.log(lapor[0]);
 
   return (
     <div className="max-w-2xl w-full mx-auto p-8 rounded-lg shadow-md">
@@ -36,12 +48,21 @@ const LaporList = () => {
                 </p>
                 <div className="flex gap-2">
                   <Link
+                    href={`/home/laporan/detail/${item.id}`}
+                    className="text-center bg-green-500 py-1 px-2 w-[72px] text-white rounded-md"
+                  >
+                    Detail
+                  </Link>
+                  <Link
                     href={`/home/laporan/edit/${item.id}`}
                     className="text-center bg-blue-500 py-1 px-2 w-[72px] text-white rounded-md"
                   >
                     Edit
                   </Link>
-                  <button className="bg-red-500 py-1 px-2 w-[72px] text-white rounded-md">
+                  <button
+                    onClick={() => handleDelete(item.id)}
+                    className="bg-red-500 py-1 px-2 w-[72px] text-white rounded-md"
+                  >
                     Delete
                   </button>
                 </div>
