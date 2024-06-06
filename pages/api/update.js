@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     if (req.method === "PUT") {
         const dataLapor = req.body;
         const { id, category, waktu, nama, tanggal, bukti, lokasi, keterangan } = dataLapor;
-        console.log();
+        console.log(dataLapor);
         const [rows] = await connection.execute(
             "UPDATE form_lapor SET category=?, Waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
             [category, waktu, nama, tanggal, bukti, lokasi, keterangan, id]
