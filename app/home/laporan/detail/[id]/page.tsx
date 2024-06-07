@@ -87,7 +87,7 @@ export default function DetailPage({ params }: any) {
                     Tanggal:{" "}
                 </p>
               <p className="font-semibold text-gray-900 truncate">
-                {item.tanggal}
+                {new Date(item.tanggal).toLocaleDateString("id-ID")}
               </p>
             </div>
             <div>
