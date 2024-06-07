@@ -121,7 +121,7 @@ export default function FormLapor() {
             Tanggal
           </label>
           <input
-            type="date"
+            type="datetime-local"
             name="tanggal"
             id="tanggal"
             value={tanggal}
