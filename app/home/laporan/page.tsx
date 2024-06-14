@@ -1,5 +1,6 @@
 "use client";
 
+import { Icon } from "@iconify/react";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 
@@ -29,12 +30,12 @@ const LaporList = () => {
     // console.log(lapor[0]);
 
     return (
-        <div className="max-w-2xl w-full mx-auto p-8 rounded-lg shadow-md ">
+        <div className="w-full mx-auto p-8 rounded-lg shadow-md ">
             <h1 className="text-2xl font-bold mb-4">Daftar Laporan</h1>
-            <ul className="divide-y divide-gray-200">
+            <ul className="divide-y divide-gray-200 grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {lapor.map((item: any) => (
-                    <li key={item.id} className="py-4">
-                        <div className="flex items-center space-x-4">
+                    <li key={item.id} >
+                        <div className="p-4 rounded-xl flex items-center space-x-4 border-2 border-primary">
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium text-gray-900 truncate">
                                     {item.category}
@@ -46,18 +47,17 @@ const LaporList = () => {
                                 <p className={`font-semibold truncate text-center py-2 px-4 my-2 rounded ${item.status ? "text-green-500" : "text-red-500"}`}>
                                     {item.status ? "Selesai" : "Proses"}
                                 </p>
-                                <div className="flex gap-2">
+                                <div className="flex gap-2 items-center">
                                     <Link
                                         href={`/home/laporan/detail/${item.id}`}
-                                        className="text-center bg-green-500 py-1 px-2 w-[72px] text-white rounded-md"
+                                        className="text-primary text-2xl"
                                     >
-                                        Detail
+                                        <Icon icon="gg:expand" />
                                     </Link>
                                     <Link
                                         href={`/home/laporan/edit/${item.id}`}
-                                        className="text-center bg-blue-500 py-1 px-2 w-[72px] text-white rounded-md"
                                     >
-                                        Edit
+                                        <Icon icon="tabler:edit" className="text-primary text-2xl" />
                                     </Link>
                                     <button
                                         onClick={() => handleDelete(item.id)}
@@ -75,12 +75,10 @@ const LaporList = () => {
     );
 };
 
-const LaporanPage = () => {
+export default function LaporanPage()  {
     return (
         <main>
             <LaporList/>
         </main>
     );
 };
-
-export default LaporanPage;
