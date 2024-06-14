@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function DetailPage({ params }: any) {
@@ -32,16 +33,18 @@ export default function DetailPage({ params }: any) {
     fetchData();
   }, [id]);
   return (
-    <main className="py-8 px-4">
-      <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">
-        Detail Laporan
-      </h1>
+    <main className="mb-32 px-4">
       <ul className="divide-y divide-gray-200">
         {lapor.map((item: any) => (
           <li
             key={item.id}
-            className="flex flex-col bg-gray-100 shadow-lg rounded rounded-lg border border-[#436850] max-w-md mx-auto gap-4 p-4"
+            className="grid bg-gray-100 shadow-lg max-w-screen-sm rounded-2xl border-[3px] px-11 py-6 border-[#436850] w-full mx-auto gap-4"
+            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
           >
+            <h1 className="text-3xl font-semibold mb-2 col-span-full">
+              Data Laporan
+              <span className="block text-sm font-light">Yang bersangkutan di bawah ini:</span>
+            </h1>
             <div>
               <p className="font-light">
                 Kategori:{" "}
@@ -50,6 +53,7 @@ export default function DetailPage({ params }: any) {
                 {item.category}
               </p>
             </div>
+            
             <div>
               <p className="font-light">
                 Waktu:{" "}
@@ -58,54 +62,60 @@ export default function DetailPage({ params }: any) {
                 {item.waktu}
               </p>
             </div>
+            
             <div>
               <p className="font-light">
-                Nama:{" "}
+                Lokasi:{" "}
               </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.nama}
-              </p>
-            </div>
-            <div>
-                <p className="font-light">
-                    Lokasi:{" "}
-                </p>
               <p className="font-semibold text-gray-900 truncate">
                 {item.lokasi}
               </p>
             </div>
+            
             <div>
-                <p className="font-light">
-                    Bukti:{" "}
-                </p>
-                <p className="font-semibold text-gray-900 truncate">
-                    {item.bukti}
-                </p>
+              <p className="font-light">
+                Bukti:{" "}
+              </p>
+              <p className="font-semibold text-gray-900 truncate">
+                {item.bukti}
+              </p>
             </div>
+            
             <div>
-                <p className="font-light">
-                    Tanggal:{" "}
-                </p>
+              <p className="font-light">
+                Tanggal:{" "}
+              </p>
               <p className="font-semibold text-gray-900 truncate">
                 {new Date(item.tanggal).toLocaleDateString("id-ID")}
               </p>
             </div>
-            <div>
+
+            <div className="col-span-full flex justify-between items-center">
+              <div>
                 <p className="font-light">
-                    Keterangan:{" "}
+                  Keterangan:{" "}
                 </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.keterangan}
-              </p>
-            </div>
-            <div>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.status ? "Selesai" : "Proses"}
-              </p>
+                <p className="font-semibold text-gray-900 truncate">
+                  {item.keterangan}
+                </p>
+              </div>
+              <div>
+                <p className="font-semibold text-gray-900 truncate">
+                  {item.status ? "Selesai" : "Proses"}
+                </p>
+              </div>
             </div>
           </li>
         ))}
       </ul>
+      
+      {/* Link kembali */}
+      <Link 
+        href="/home/laporan" 
+        className="bg-primary text-white px-6 py-2 rounded-lg absolute bottom-8 right-1/2 translate-x-1/2"
+      >
+          Kembali
+      </Link>
     </main>
   );
 }
