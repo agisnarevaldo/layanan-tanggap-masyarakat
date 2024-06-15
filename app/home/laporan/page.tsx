@@ -37,14 +37,14 @@ const LaporList = () => {
                     <li key={item.id} >
                         <div className="p-4 rounded-xl flex items-center space-x-4 border-2 border-primary">
                             <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-900 truncate">
+                                <p className="font-semibold text-gray-900 truncate">
                                     {item.category}
                                 </p>
-                                <p className="text-sm text-gray-500 truncate">{item.Waktu}</p>
-                                <p className="text-sm text-gray-500 truncate">{new  Date(item.tanggal).toLocaleDateString('id-ID')}</p>
+                                <p className="text-sm text-gray-600 truncate">{item.waktu}</p>
+                                <p className="text-sm text-gray-600 truncate">{new  Date(item.tanggal).toLocaleDateString('id-ID')}</p>
                             </div>
                             <div>
-                                <p className={`font-semibold truncate text-center py-2 px-4 my-2 rounded ${item.status ? "text-green-500" : "text-red-500"}`}>
+                                <p className={`truncate text-center text-white px-4 my-4 rounded ${item.status ? "bg-green-700" : "bg-red-700"}`}>
                                     {item.status ? "Selesai" : "Proses"}
                                 </p>
                                 <div className="flex gap-2 items-center">
@@ -61,9 +61,8 @@ const LaporList = () => {
                                     </Link>
                                     <button
                                         onClick={() => handleDelete(item.id)}
-                                        className="bg-red-500 py-1 px-2 w-[72px] text-white rounded-md"
                                     >
-                                        Delete
+                                        <Icon icon="ph:trash" className="text-red-600 text-2xl" />
                                     </button>
                                 </div>
                             </div>
