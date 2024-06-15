@@ -36,85 +36,87 @@ export default function DetailPage({ params }: any) {
     <main className="mb-32 px-4">
       <ul className="divide-y divide-gray-200">
         {lapor.map((item: any) => (
-          <li
-            key={item.id}
-            className="grid bg-gray-100 shadow-lg max-w-screen-sm rounded-2xl border-[3px] px-11 py-6 border-[#436850] w-full mx-auto gap-4"
-            style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
-          >
-            <h1 className="text-3xl font-semibold mb-2 col-span-full">
-              Data Laporan
-              <span className="block text-sm font-light">Yang bersangkutan di bawah ini:</span>
-            </h1>
-            <div>
-              <p className="font-light">
-                Kategori:{" "}
-              </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.category}
-              </p>
-            </div>
-            
-            <div>
-              <p className="font-light">
-                Waktu:{" "}
-              </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.waktu}
-              </p>
-            </div>
-            
-            <div>
-              <p className="font-light">
-                Lokasi:{" "}
-              </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.lokasi}
-              </p>
-            </div>
-            
-            <div>
-              <p className="font-light">
-                Bukti:{" "}
-              </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {item.bukti}
-              </p>
-            </div>
-            
-            <div>
-              <p className="font-light">
-                Tanggal:{" "}
-              </p>
-              <p className="font-semibold text-gray-900 truncate">
-                {new Date(item.tanggal).toLocaleDateString("id-ID")}
-              </p>
-            </div>
-
-            <div className="col-span-full flex justify-between items-center">
+            <li
+                key={item.id}
+                className="grid grid-cols-3 bg-gray-100 shadow-lg w-max rounded-2xl border-[3px] px-11 py-6 border-[#436850] mx-auto gap-y-4 gap-x-20 items-center"
+                // style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}
+            >
+              <h1 className="text-3xl font-semibold mb-2 col-span-full">
+                Data Laporan
+                <span className="block text-sm font-light">Yang bersangkutan di bawah ini:</span>
+              </h1>
               <div>
                 <p className="font-light">
-                  Keterangan:{" "}
+                  Kategori:{" "}
                 </p>
                 <p className="font-semibold text-gray-900 truncate">
-                  {item.keterangan}
+                  {item.category}
                 </p>
               </div>
-              <div>
+
+              <div className="">
+                <p className="font-light">
+                  Waktu:{" "}
+                </p>
                 <p className="font-semibold text-gray-900 truncate">
+                  {item.waktu}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-light">
+                  Lokasi:{" "}
+                </p>
+                <p className="font-semibold text-gray-900 truncate">
+                  {item.lokasi}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-light">
+                  Bukti:{" "}
+                </p>
+                <p className="font-semibold text-gray-900 truncate">
+                  {item.bukti}
+                </p>
+              </div>
+
+              <div>
+                <p className="font-light">
+                  Tanggal:{" "}
+                </p>
+                <p className="font-semibold text-gray-900 truncate">
+                  {new Date(item.tanggal).toLocaleDateString("id-ID")}
+                </p>
+              </div>
+
+              <div>
+                <p className={`text-secondary text-center font-semibold rounded ${item.status ? "bg-green-700" : "bg-red-600"} truncate`}>
                   {item.status ? "Selesai" : "Proses"}
                 </p>
               </div>
-            </div>
-          </li>
+
+              <div className="col-span-2 flex justify-between items-center">
+                <div>
+                  <p className="font-light">
+                    Keterangan:{" "}
+                  </p>
+                  <p className="font-semibold text-gray-900 truncate">
+                    {item.keterangan}
+                  </p>
+                </div>
+
+              </div>
+            </li>
         ))}
       </ul>
-      
+
       {/* Link kembali */}
-      <Link 
-        href="/home/laporan" 
-        className="bg-primary text-white px-6 py-2 rounded-lg absolute bottom-8 right-1/2 translate-x-1/2"
+      <Link
+          href="/home/laporan"
+          className="bg-primary text-white px-6 py-2 rounded-lg absolute bottom-8 right-1/2 translate-x-1/2"
       >
-          Kembali
+        Kembali
       </Link>
     </main>
   );
