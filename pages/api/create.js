@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from "path";
 import multer from 'multer';
 
-const upload = multer({ dest: 'public/image/uploads/' });
+const upload = multer({ dest: 'public/images/uploads/' });
 
 export const config = {
     api: {
@@ -29,14 +29,16 @@ export default async function handler(req, res) {
             const { category, waktu, nama, tanggal, lokasi, keterangan } = dataLapor;
             const imageFile = req.file;
             const imageFileName = `${Date.now()}-${imageFile.originalname}`;
-            const imagePath = path.join('public', 'image', imageFileName);
+            const imagePath = path.join('public', 'images', 'uploads', imageFileName);
 
             // Save the image file to the public/image/uploads folder
             await fs.promises.rename(imageFile.path, imagePath);
 
+            const imageUrl = `/images/uploads/${imageFileName}`;
+
             const [rows] = await connection.execute(
                 "INSERT INTO form_lapor (category, waktu, nama, tanggal, bukti, lokasi, keterangan) VALUES (?,?,?,?,?,?,?)",
-                [category, waktu, nama, tanggal, imageFileName, lokasi, keterangan]
+                [category, waktu, nama, tanggal, imageUrl, lokasi, keterangan]
             );
 
             // check if the user is exist
