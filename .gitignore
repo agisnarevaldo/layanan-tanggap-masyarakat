@@ -8,6 +8,9 @@
 
 # testing
 /coverage
+/app/[id]/
+/app/api/hello/
+/pages/api/db.sql
 
 # next.js
 /.next/
@@ -26,6 +29,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
