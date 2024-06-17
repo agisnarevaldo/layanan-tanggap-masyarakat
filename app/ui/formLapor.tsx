@@ -3,34 +3,35 @@
 import Link from "next/link";
 import Button from "./button";
 import { useState } from "react";
+import ButtonModal from "./modal";
 
 export default function FormLapor() {
   const [category, setCategory] = useState("");
   const [waktu, setWaktu] = useState("");
   const [nama, setNama] = useState("");
   const [tanggal, setTanggal] = useState("");
-  const [bukti, setBukti] = useState("");
+  const [bukti, setBukti] = useState<File | null>(null);
   const [lokasi, setLokasi] = useState("");
   const [keterangan, setKeterangan] = useState("");
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
 
+    const formData = new FormData();
+    formData.append("category", category);
+    formData.append("waktu", waktu);
+    formData.append("nama", nama);
+    formData.append("tanggal", tanggal);
+    if (bukti) {
+      formData.append("bukti", bukti);
+    }
+    formData.append("lokasi", lokasi);
+    formData.append("keterangan", keterangan);
+
     // Kirim data ke API untuk ditambahkan
     const response = await fetch("/api/create", {
       method: "POST",
-      body: JSON.stringify({
-        category: category || "",
-        waktu: waktu || "",
-        nama: nama || "",
-        tanggal: tanggal || "",
-        bukti: bukti || "",
-        lokasi: lokasi || "",
-        keterangan: keterangan || "",
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
+      body: formData,
     });
 
     if (response.ok) {
@@ -43,7 +44,7 @@ export default function FormLapor() {
       setWaktu("");
       setNama("");
       setTanggal("");
-      setBukti("");
+      setBukti(null);
       setLokasi("");
       setKeterangan("");
     } else {
@@ -97,7 +98,7 @@ export default function FormLapor() {
         </div>
         <div className="w-full">
           <label
-            htmlFor="brand"
+            htmlFor="nama"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Nama Pelapor
@@ -109,13 +110,13 @@ export default function FormLapor() {
             value={nama}
             onChange={(event) => setNama(event.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-            placeholder="Product brand"
+            placeholder="Nama Pelapor"
             required
           />
         </div>
         <div className="w-full">
           <label
-            htmlFor="price"
+            htmlFor="tanggal"
             className="block mb-2 text-sm font-medium text-gray-900"
           >
             Tanggal
@@ -127,11 +128,10 @@ export default function FormLapor() {
             value={tanggal}
             onChange={(event) => setTanggal(event.target.value)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-            placeholder="$2999"
+            placeholder="Tanggal Kejadian"
             required
           />
         </div>
-
         <div>
           <label
             htmlFor="bukti"
@@ -143,13 +143,11 @@ export default function FormLapor() {
             type="file"
             name="bukti"
             id="bukti"
-            value={bukti}
-            onChange={(event) => setBukti(event.target.value)}
+            onChange={(event) => setBukti(event.target.files?.[0] || null)}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
             placeholder="Upload bukti laporan"
           />
         </div>
-
         <div>
           <label
             htmlFor="lokasi"
@@ -167,7 +165,6 @@ export default function FormLapor() {
             placeholder="Lokasi Kejadian"
           />
         </div>
-
         <div className="sm:col-span-2">
           <label
             htmlFor="keterangan"
@@ -182,7 +179,7 @@ export default function FormLapor() {
             value={keterangan}
             onChange={(event) => setKeterangan(event.target.value)}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-            placeholder="Tulis Keterangan Anda"
+            placeholder="Keterangan Laporan"
           />
         </div>
       </div>
@@ -193,12 +190,13 @@ export default function FormLapor() {
         >
           Batalkan
         </Link>
-        <Button
+        <ButtonModal />
+        {/* <Button
           type="submit"
           classname="w:1/12 sm:w-1/6 items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-primary-700 focus:ring-4 focus:ring-primary-200 border-[#436850]"
         >
           Laporkan
-        </Button>
+        </Button> */}
       </div>
     </form>
   );
