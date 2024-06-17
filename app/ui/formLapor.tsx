@@ -193,7 +193,7 @@ export default function FormLapor() {
         <ButtonModal />
         {/* <Button
           type="submit"
-          classname="w:1/12 sm:w-1/6 items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white bg-primary-700 focus:ring-4 focus:ring-primary-200 border-[#436850]"
+          classname="bg-primary w:1/12 sm:w-1/6 items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white focus:ring-4 focus:ring-primary-200 border-[#436850]"
         >
           Laporkan
         </Button> */}
