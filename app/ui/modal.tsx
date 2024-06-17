@@ -1,6 +1,7 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import Link from "next/link";
 
 export default function ButtonModal() {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -8,7 +9,7 @@ export default function ButtonModal() {
     return (
         <>
             <Button
-                // type="submit"
+                type="submit"
                 onPress={onOpen}
                 radius="full"
                 className="bg-primary w:1/12 sm:w-1/6 items-center px-5 py-2.5 mt-4 text-sm font-medium text-center text-white focus:ring-4 focus:ring-primary-200 border-[#436850]"
@@ -29,12 +30,17 @@ export default function ButtonModal() {
                                 </p>
                             </ModalBody>
                             <ModalFooter>
-                                {/* <Button radius="full" color="danger" variant="light" onPress={onClose}>
+                                <Button radius="full" color="danger" variant="light" onPress={onClose}>
                                     Tutup
-                                </Button> */}
-                                <Button onPress={onClose} variant="solid" color="primary" radius="full">
-                                    <Icon icon="gravity-ui:arrow-right" className="text-white font-semibold text-xl" />
                                 </Button>
+                                <Link href="/home/laporan">
+                                    <Button radius="full" color="primary" variant="solid">
+                                        Lihat Laporan
+                                    </Button>
+                                </Link>
+                                {/* <Button onPress={onClose} variant="solid" color="primary" radius="full">
+                                    <Icon icon="gravity-ui:arrow-right" className="text-white font-semibold text-xl" />
+                                </Button> */}
                             </ModalFooter>
                         </>
                     )}
