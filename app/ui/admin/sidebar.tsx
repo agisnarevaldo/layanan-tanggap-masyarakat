@@ -15,14 +15,14 @@ const AdminSidebar = () => {
       />
 
       <ul className="mt-12">
-        <li className="p-4 hover:bg-gray-700 cursor-pointer">
+        <li className="p-4 hover:bg-green-800">
           <Link href="/admin">
             <div className="flex items-center">
               <Icon icon="material-symbols:home" className="mr-4" /> Dashboard
             </div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-700 cursor-pointer">
+        <li className="p-4 hover:bg-green-800 cursor-pointer">
           <Link href="/admin/data_laporan">
             <div className="flex items-center">
               <Icon icon="heroicons:user-group-20-solid" className="mr-4" />{" "}
@@ -30,14 +30,14 @@ const AdminSidebar = () => {
             </div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-700 cursor-pointer">
-          <Link href="/admin">
+        <li className="p-4 hover:bg-green-800 cursor-pointer">
+          <Link href="/admin/laporan_selesai">
             <div className="flex items-center">
               <Icon icon="carbon:user-filled" className="mr-4" /> Laporan Selesai
             </div>
           </Link>
         </li>
-        <li className="p-4 hover:bg-gray-700 cursor-pointer">
+        <li className="p-4 hover:bg-green-800 cursor-pointer">
           <Link href="/settings">
             <div className="flex items-center">
               <Icon icon="streamline:task-list-solid" className="mr-4" />{" "}
