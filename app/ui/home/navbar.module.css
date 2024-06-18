@@ -1,23 +1,28 @@
 .link {
-  display: inline-block;
+  display: block;
   text-decoration: none;
   color: #3b3b3b;
-  font-family: sans-serif;
+  font-family: sans-serif; /* Uncommented font-family */
 }
 
-.link:after {
-  display: block;
+.link:hover {
+  /* display: inline-block; */
   content: "";
   width: inherit;
   border-bottom: solid 3px #436850;
-  transform: scaleX(0);
+  transform: scaleX(1); /* Added transform property */
   transition: transform 250ms ease-in-out;
 }
 
-.link:hover:after {
+.link:after {
   transform: scaleX(1);
+  transform-origin: left;
 }
 
-.link:after {
-  transform-origin: left;
+.active {
+  color: #436850;
+  /* display: inline-block; */
+  content: "";
+  width: inherit;
+  border-bottom: solid 3px #436850;
 }
