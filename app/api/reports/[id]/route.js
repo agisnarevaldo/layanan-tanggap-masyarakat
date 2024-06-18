@@ -13,7 +13,7 @@ export const config = {
     },
 };
 
-function getIdFormUrl(url) {
+function getIdFromUrl(url) {
     const urlParts = url.split('/');
     return urlParts[urlParts.length - 1];
 }
@@ -45,9 +45,7 @@ export async function GET(req, { params }) {
     }
 }
 
-export async function PUT(req, res, { params }) {
-
-
+export async function PUT(req, res) {
     if (req.method === "PUT") {
         upload.single('bukti')(req, res, async function (err) {
             if (err) {
@@ -61,10 +59,12 @@ export async function PUT(req, res, { params }) {
                 database: process.env.DB_NAME,
             });
 
-            const { id } = params;
+            const id = getIdFromUrl(req.url);
             if (!id) {
+                await connection.end();
                 return res.status(400).json({ error: "Missing id parameter" });
             }
+
             const dataLapor = req.body;
             const { category, waktu, nama, tanggal, lokasi, keterangan } = dataLapor;
             let imageUrl = req.body.bukti;
@@ -74,28 +74,28 @@ export async function PUT(req, res, { params }) {
                 const imageFileName = `${Date.now()}-${imageFile.originalname}`;
                 const imagePath = path.join('public', 'images', 'uploads', imageFileName);
 
-                // Save the image file to the public/image/uploads folder
                 await fs.promises.rename(imageFile.path, imagePath);
                 imageUrl = `/images/uploads/${imageFileName}`;
             }
 
             const [rows] = await connection.execute(
                 "UPDATE form_lapor SET category=?, waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
-                [category, waktu, nama, tanggal, imageUrl, lokasi, keterangan, id]
+                [category ?? null, waktu ?? null, nama ?? null, tanggal ?? null, imageUrl ?? null, lokasi ?? null, keterangan ?? null, id]
             );
 
             if (rows.affectedRows === 0) {
+                await connection.end();
                 return res.status(500).json({ error: "Failed to update data" });
             }
 
             await connection.end();
-
-            res.status(200).json({ message: "Data updated successfully" });
+            return res.status(200).json({ message: "Data updated successfully" });
         });
     } else {
-        res.status(405).json({ error: "Method not allowed" });
+        return res.status(405).json({ error: "Method not allowed" });
     }
 }
+
 
 export async function DELETE(req, { params }) {
     const connection = await createConnection({
