@@ -13,6 +13,25 @@ export const config = {
     },
 };
 
+// export default function handler(req, res) {
+//     const { id } = req.query;
+
+//     if (!id) {
+//         return res.status(400).json({ error: 'ID is required' });
+//     }
+
+//     try {
+//         // Proses data berdasarkan ID
+//         const data = fetchDataBasedOnId(id); // Misalkan fungsi ini mengambil data
+//         if (!data) {
+//             return res.status(404).json({ error: 'Data not found' });
+//         }
+//         return res.status(200).json(data);
+//     } catch (error) {
+//         return res.status(500).json({ error: 'Internal server error' });
+//     }
+// }
+
 function getIdFromUrl(url) {
     const urlParts = url.split('/');
     return urlParts[urlParts.length - 1];
@@ -65,31 +84,38 @@ export async function PUT(req, res) {
                 return res.status(400).json({ error: "Missing id parameter" });
             }
 
-            const dataLapor = req.body;
-            const { category, waktu, nama, tanggal, lokasi, keterangan } = dataLapor;
-            let imageUrl = req.body.bukti;
+            const { category, waktu, nama, tanggal, lokasi, keterangan } = req.body;
+            let imageUrl = req.file ? `/images/uploads/${req.file.filename}` : null;
 
-            if (req.file) {
-                const imageFile = req.file;
-                const imageFileName = `${Date.now()}-${imageFile.originalname}`;
-                const imagePath = path.join('public', 'images', 'uploads', imageFileName);
+            // Menggunakan nullish coalescing operator untuk mengganti undefined dengan null
+            const parameters = [
+                category ?? null,
+                waktu ?? null,
+                nama ?? null,
+                tanggal ?? null,
+                imageUrl ?? null,
+                lokasi ?? null,
+                keterangan ?? null,
+                id
+            ];
 
-                await fs.promises.rename(imageFile.path, imagePath);
-                imageUrl = `/images/uploads/${imageFileName}`;
-            }
+            try {
+                const [rows] = await connection.execute(
+                    "UPDATE form_lapor SET category=?, waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
+                    parameters
+                );
 
-            const [rows] = await connection.execute(
-                "UPDATE form_lapor SET category=?, waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
-                [category ?? null, waktu ?? null, nama ?? null, tanggal ?? null, imageUrl ?? null, lokasi ?? null, keterangan ?? null, id]
-            );
+                if (rows.affectedRows === 0) {
+                    await connection.end();
+                    return res.status(500).json({ error: "Failed to update data" });
+                }
 
-            if (rows.affectedRows === 0) {
                 await connection.end();
-                return res.status(500).json({ error: "Failed to update data" });
+                return res.status(200).json({ message: "Data updated successfully" });
+            } catch (error) {
+                await connection.end();
+                return res.status(500).json({ error: "Error executing the update query", details: error.message });
             }
-
-            await connection.end();
-            return res.status(200).json({ message: "Data updated successfully" });
         });
     } else {
         return res.status(405).json({ error: "Method not allowed" });
