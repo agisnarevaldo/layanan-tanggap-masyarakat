@@ -1,8 +1,8 @@
+import Contact from "@/app/ui/contact";
+
 const KontakPage = () => {
   return (
-    <main>
-      <h1>Kontak</h1>
-    </main>
+    <Contact />
   );
 };
 
