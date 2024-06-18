@@ -60,30 +60,32 @@ const EditLaporan = ({ params }: any) => {
 
 	const handleSubmit = async (event: any) => {
 		event.preventDefault();
-
 		const formData = new FormData();
 		formData.append("category", category);
 		formData.append("waktu", waktu);
 		formData.append("nama", nama);
 		formData.append("tanggal", tanggal);
+		formData.append("lokasi", lokasi);
+		formData.append("keterangan", keterangan);
 		if (bukti) {
 			formData.append("bukti", bukti);
 		}
-		formData.append("lokasi", lokasi);
-		formData.append("keterangan", keterangan);
 
 		const response = await fetch(`/api/reports/${id}`, {
 			method: "PUT",
 			body: formData,
 		});
-		
-		if (response.ok) {
-			console.log("Data updated successfully");
-			console.log(formData);
-			// Redirect or show success message
-		} else {
-			console.error("Failed to update data");
-			console.log(formData);
+
+		if (!response.ok) {
+			console.error("Server responded with an error:", response.status);
+			return;
+		}
+
+		try {
+			const result = await response.json();
+			console.log("Update successful", result);
+		} catch (error) {
+			console.error("Failed to parse JSON:", error);
 		}
 	};
 
@@ -229,7 +231,13 @@ const EditLaporan = ({ params }: any) => {
 					>
 						Batalkan
 					</Link>
-					<ButtonModal />
+					{/* <ButtonModal /> */}
+					<button
+						type="submit"
+						className="w:-1/12 sm:w-1/6 text-center text-white bg-primary rounded-full items-center px-5 py-2.5 mt-4 text-sm font-medium"
+					>
+						Simpan
+					</button>
 				</div>
 			</form>
 		</main>
