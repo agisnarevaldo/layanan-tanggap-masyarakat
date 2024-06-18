@@ -7,7 +7,7 @@ import { SignIn } from "@clerk/nextjs";
 const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <SignIn path="/sign-in" />
+      <FormLogin />
     </div>
   );
 };

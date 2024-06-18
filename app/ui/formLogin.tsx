@@ -6,10 +6,10 @@ const FormLogin = () => {
   return (
     <form
       action=""
-      className="flex flex-col gap-4 w-max m-auto"
+      className="flex flex-col gap-4 w-full max-w-4xl m-auto"
       autoComplete="on"
     >
-      <div className="flex flex-col gap-4 items-center bg-primary py-6 rounded-2xl shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
+      <div className="flex flex-col gap-7 items-center bg-primary py-6 rounded-2xl shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
         <Label htmlFor="email">Email</Label>
         <Input
           id="email"
@@ -26,10 +26,12 @@ const FormLogin = () => {
           className="w-3/4 m-auto"
           autoComplete="new-password"
         />
+
+        <Button type="submit" classname="w-1/3 m-auto">
+          Login
+        </Button>
       </div>
-      <Button type="submit" classname="w-1/3 m-auto">
-        Login
-      </Button>
+      
     </form>
   );
 };
