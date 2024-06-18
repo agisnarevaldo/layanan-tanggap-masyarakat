@@ -7,9 +7,11 @@ export default async function AdminPage() {
   return (
     <div className="flex justify-evenly w-full">
       <div className="p-5 text-white">
+
         <div className="mb-5">
           <CardName />
         </div>
+        
         <div className="pt-5 grid grid-cols-2 gap-x-4 gap-y-4">
 
           <Card classname="bg-green-900" count={4} title="Data Laporan Masuk">

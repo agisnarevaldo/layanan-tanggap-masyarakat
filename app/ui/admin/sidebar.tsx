@@ -16,24 +16,24 @@ const AdminSidebar = () => {
 
       <ul className="mt-12">
         <li className="p-4 hover:bg-gray-700 cursor-pointer">
-          <Link href="/dashboard">
+          <Link href="/admin">
             <div className="flex items-center">
               <Icon icon="material-symbols:home" className="mr-4" /> Dashboard
             </div>
           </Link>
         </li>
         <li className="p-4 hover:bg-gray-700 cursor-pointer">
-          <Link href="/users">
+          <Link href="/admin/data_laporan">
             <div className="flex items-center">
               <Icon icon="heroicons:user-group-20-solid" className="mr-4" />{" "}
-              Pengguna
+              Laporan Masuk
             </div>
           </Link>
         </li>
         <li className="p-4 hover:bg-gray-700 cursor-pointer">
-          <Link href="/reports">
+          <Link href="/admin">
             <div className="flex items-center">
-              <Icon icon="carbon:user-filled" className="mr-4" /> Laporan
+              <Icon icon="carbon:user-filled" className="mr-4" /> Laporan Selesai
             </div>
           </Link>
         </li>

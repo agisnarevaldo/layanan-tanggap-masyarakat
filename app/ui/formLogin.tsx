@@ -5,8 +5,8 @@ import Label from "./label";
 const FormLogin = () => {
   return (
     <form
-      action=""
-      className="flex flex-col gap-4 w-full max-w-4xl m-auto"
+      action="aksi_login"
+      className="flex flex-col gap-4 w-full max-w-xl m-auto"
       autoComplete="on"
     >
       <div className="flex flex-col gap-7 items-center bg-primary py-6 rounded-2xl shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]">
