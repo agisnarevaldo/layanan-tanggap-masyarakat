@@ -3,13 +3,14 @@ import Card from "../ui/admin/card";
 import CardName from "../ui/admin/card-name";
 import CardProfile from "../ui/admin/card-profile";
 
+
 export default async function AdminPage() {
   return (
     <div className="flex justify-evenly w-full">
       <div className="p-5 text-white">
 
         <div className="mb-5">
-          <CardName />
+          <CardName username="Agis" />
         </div>
         
         <div className="pt-5 grid grid-cols-2 gap-x-4 gap-y-4">
@@ -34,7 +35,7 @@ export default async function AdminPage() {
       </div>
 
       <div className="p-5">
-        <CardProfile />
+        <CardProfile name="Agisna Revaldo" level="Admin" />
       </div>
     </div>
   );
