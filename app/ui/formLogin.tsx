@@ -39,16 +39,16 @@ const FormLogin = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-4 w-full max-w-xl m-auto"
-      autoComplete="on"
+      className="flex flex-col gap-4 w-full max-w-lg mx-auto"
+      autoComplete="off"
     >
-      <div className="flex flex-col gap-7 items-center bg-primary py-6 rounded-2xl shadow-[rgba(0, 0, 0, 0.4) 0px 30px 90px]">
+      <div className="flex w-max mx-auto flex-col gap-5 items-center bg-primary py-8 rounded-3xl shadow-2xl shadow-slate-600">
         <Label htmlFor="username">Username</Label>
         <Input
           id="username"
           type="text"
           placeholder="Masukkan username"
-          className="w-3/4 m-auto"
+          className="max-w-full mx-12 -mt-2 text-center"
           autoComplete="username"
         />
         <Label htmlFor="password">Password</Label>
@@ -57,13 +57,13 @@ const FormLogin = () => {
           // name="password"
           type="password"
           placeholder="Masukkan password"
-          className="w-3/4 m-auto"
+          className="max-w-full mx-12 -mt-2 text-center"
           autoComplete="current-password"
         />
 
-        <button type="submit" className="w-1/3 m-auto">
+        <Button type="submit" classname="w-1/4 m-auto">
           Login
-        </button>
+        </Button>
       </div>
     </form>
   );
