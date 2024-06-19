@@ -1,6 +1,11 @@
 import { Icon } from "@iconify/react";
 
-export default function CardProfile() {
+interface CardProfileProps {
+  name: string;
+  level: string;
+}
+
+export default function CardProfile({ name, level }: CardProfileProps) {
   return (
     <div className="flex justify-between flex-col gap-7">
       <div className="flex justify-between">
@@ -20,8 +25,8 @@ export default function CardProfile() {
             icon="tdesign:user-circle"
             className="text-primary text-[100px] mx-auto"
           />
-          <h2 className="font-semibold text-xl mt-2">Genta Septi Akhiryan</h2>
-          <p className="text-sm">Admin</p>
+          <h2 className="font-semibold text-xl mt-2">{name}</h2>
+          <p className="text-sm">{level}</p>
         </div>
 
         <div className="flex-col flex gap-3">
