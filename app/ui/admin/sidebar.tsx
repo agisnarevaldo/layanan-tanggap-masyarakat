@@ -31,7 +31,7 @@ const AdminSidebar = () => {
           </Link>
         </li>
         <li className="p-4 hover:bg-green-800 cursor-pointer">
-          <Link href="/admin/laporan_selesai">
+          <Link href="/admin/laporan_true">
             <div className="flex items-center">
               <Icon icon="carbon:user-filled" className="mr-4" /> Laporan Selesai
             </div>
