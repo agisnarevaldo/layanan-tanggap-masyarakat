@@ -41,9 +41,9 @@ const DataViewer: React.FC = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <div className='max-w-2xl mx-auto w-fit bg-gray-500'>
       <h1>Data Laporan</h1>
-      <table className="min-w-full divide-y divide-gray-200 shadow-sm">
+      <table className="max-w-2xl w-fit bg-white divide-y divide-gray-200 shadow-sm">
         <thead className="bg-gray-50">
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
@@ -64,8 +64,8 @@ const DataViewer: React.FC = () => {
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.nama}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.tanggal}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 truncate w-1">{item.keterangan}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.lokasi}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.bukti}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 truncate w-1">{item.lokasi}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 truncate w-1">{item.bukti}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${item.status ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}>
                   {item.status ? "Selesai" : "Proses"}
