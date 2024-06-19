@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import ModalLogout from "@/app/ui/admin/modalLogout";
 
 const AdminSidebar = () => {
   return (
@@ -48,9 +51,10 @@ const AdminSidebar = () => {
       </ul>
 
       <div className="flex items-center absolute bottom-0 p-4">
-        <button className="flex items-center">
-          <Icon icon="carbon:logout" className="mr-4" /> Logout
-        </button>
+        <ModalLogout />
+        {/*<button className="flex items-center">*/}
+        {/*  <Icon icon="carbon:logout" className="mr-4" /> Logout*/}
+        {/*</button>*/}
       </div>
     </div>
   );
