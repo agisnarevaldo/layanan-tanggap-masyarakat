@@ -29,34 +29,15 @@ const Footer = () => {
             </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-            <div>
-              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
-                Resources
-              </h2>
-              <ul className="text-zinc-400 font-medium">
-                <li className="mb-4">
-                  <a href="https://nextjs.org/" className="hover:underline">
-                    NextJS
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://tailwindcss.com/"
-                    className="hover:underline"
-                  >
-                    Tailwind CSS
-                  </a>
-                </li>
-              </ul>
-            </div>
+            
             <div>
               <h2 className="mb-6 text-sm font-semibold  uppercase text-white">
-                Follow us
+                Sumber
               </h2>
               <ul className="text-zinc-400 font-medium">
                 <li className="mb-4">
                   <a
-                    href="https://github.com/themesberg/flowbite"
+                    href="https://github.com/agisnarevaldo/layanan-tanggap-masyarakat/"
                     className="hover:underline "
                   >
                     Github
@@ -64,10 +45,10 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://discord.gg/4eeurUVvTy"
+                    href="https://www.figma.com/design/1qVhCkoYiaW662XTu9GRJ6/Untitled?m=auto&t=yKqjeuPog4VA9tIa-6"
                     className="hover:underline"
                   >
-                    Discord
+                    Figma
                   </a>
                 </li>
               </ul>
@@ -85,6 +66,26 @@ const Footer = () => {
                 <li>
                   <a href="#" className="hover:underline">
                     Terms &amp; Conditions
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2 className="mb-6 text-sm font-semibold uppercase text-white">
+                Referensi
+              </h2>
+              <ul className="text-zinc-400 font-medium">
+                <li className="mb-4">
+                  <a href="https://nextjs.org/" className="hover:underline">
+                    NextJS
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://tailwindcss.com/"
+                    className="hover:underline"
+                  >
+                    Tailwind CSS
                   </a>
                 </li>
               </ul>

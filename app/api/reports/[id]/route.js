@@ -1,6 +1,42 @@
 import { createConnection } from "mysql2/promise";
 import { NextResponse } from "next/server";
 
+import fs from 'fs';
+import path from "path";
+import multer from 'multer';
+
+const upload = multer({ dest: 'public/image/uploads/' });
+
+export const config = {
+    api: {
+        bodyParser: false,
+    },
+};
+
+// export default function handler(req, res) {
+//     const { id } = req.query;
+
+//     if (!id) {
+//         return res.status(400).json({ error: 'ID is required' });
+//     }
+
+//     try {
+//         // Proses data berdasarkan ID
+//         const data = fetchDataBasedOnId(id); // Misalkan fungsi ini mengambil data
+//         if (!data) {
+//             return res.status(404).json({ error: 'Data not found' });
+//         }
+//         return res.status(200).json(data);
+//     } catch (error) {
+//         return res.status(500).json({ error: 'Internal server error' });
+//     }
+// }
+
+function getIdFromUrl(url) {
+    const urlParts = url.split('/');
+    return urlParts[urlParts.length - 1];
+}
+
 export async function GET(req, { params }) {
     const connection = await createConnection({
         host: process.env.DB_HOST,
@@ -28,36 +64,64 @@ export async function GET(req, { params }) {
     }
 }
 
-export async function PUT(req, { params }) {
-    const connection = await createConnection({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_NAME,
-    });
+export async function PUT(req, res) {
     if (req.method === "PUT") {
-        const { id } = params;
-        const dataLapor = await req.json();
-        // const dataLapor = req.body;
-        const [rows] = await connection.execute(
-            "UPDATE form_lapor SET category=?, Waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
-            [dataLapor.category, dataLapor.Waktu, dataLapor.nama, dataLapor.tanggal, dataLapor.bukti, dataLapor.lokasi, dataLapor.keterangan, id]
-        );
+        upload.single('bukti')(req, res, async function (err) {
+            if (err) {
+                return res.status(500).json({ error: "File upload error" });
+            }
 
-        // check if the user is exist
-        if (rows.affectedRows === 0) {
-            return NextResponse.json({ error: "Failed to update data" });
-        }
+            const connection = await createConnection({
+                host: process.env.DB_HOST,
+                user: process.env.DB_USER,
+                password: process.env.DB_PASSWORD,
+                database: process.env.DB_NAME,
+            });
 
-        // Close the connection
-        await connection.end();
+            const id = getIdFromUrl(req.url);
+            if (!id) {
+                await connection.end();
+                return res.status(400).json({ error: "Missing id parameter" });
+            }
 
-        // response with the user data
-        return NextResponse.json({ message: "Data updated successfully" });
+            const { category, waktu, nama, tanggal, lokasi, keterangan } = req.body;
+            let imageUrl = req.file ? `/images/uploads/${req.file.filename}` : null;
+
+            // Menggunakan nullish coalescing operator untuk mengganti undefined dengan null
+            const parameters = [
+                category ?? null,
+                waktu ?? null,
+                nama ?? null,
+                tanggal ?? null,
+                imageUrl ?? null,
+                lokasi ?? null,
+                keterangan ?? null,
+                id
+            ];
+
+            try {
+                const [rows] = await connection.execute(
+                    "UPDATE form_lapor SET category=?, waktu=?, nama=?, tanggal=?, bukti=?, lokasi=?, keterangan=? WHERE id=?",
+                    parameters
+                );
+
+                if (rows.affectedRows === 0) {
+                    await connection.end();
+                    return res.status(500).json({ error: "Failed to update data" });
+                }
+
+                await connection.end();
+                return res.status(200).json({ message: "Data updated successfully" });
+            } catch (error) {
+                await connection.end();
+                return res.status(500).json({ error: "Error executing the update query", details: error.message });
+            }
+        });
     } else {
-        return NextResponse.json({ error: "Method not allowed" });
+        return res.status(405).json({ error: "Method not allowed" });
     }
 }
+
 
 export async function DELETE(req, { params }) {
     const connection = await createConnection({

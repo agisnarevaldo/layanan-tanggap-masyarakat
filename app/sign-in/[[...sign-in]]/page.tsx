@@ -6,8 +6,11 @@ import { SignIn } from "@clerk/nextjs";
 
 const LoginPage = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <SignIn path="/sign-in" />
+      <Link href="/login" className="text-blue-400 mt-2 text-sm">
+        Masuk Sebagai Admin
+      </Link>
     </div>
   );
 };

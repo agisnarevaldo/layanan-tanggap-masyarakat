@@ -1,6 +1,7 @@
 import React from "react";
 
 const Contact = () => {
+  
   return (
     <>
       <section
@@ -14,11 +15,7 @@ const Contact = () => {
                 <h2 className="mb-6 text-3xl font-bold uppercase text-dark sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                   HUBUNGI KAMI
                 </h2>
-                <p className="mb-9 text-base leading-relaxed text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                  enim adiqua minim veniam quis nostrud exercitation ullamco
-                </p>
+                
                 <div className="mb-8 flex items-center w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary/5 text-primary sm:h-[70px] sm:max-w-[70px]">
                     <svg
@@ -36,10 +33,10 @@ const Contact = () => {
                   </div>
                   <div className="w-full">
                     <h4 className="mb-1 text-xl font-bold text-dark">
-                      Our Location
+                      Lokasi
                     </h4>
                     <p className="text-base text-body-color">
-                      99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                      JL. Siluman Cibeureum Tasikmalaya. Indonesia
                     </p>
                   </div>
                 </div>
@@ -76,10 +73,10 @@ const Contact = () => {
                   </div>
                   <div className="w-full">
                     <h4 className="mb-1 text-xl font-bold text-dark">
-                      Phone Number
+                      Telepon
                     </h4>
                     <p className="text-base text-body-color">
-                      (+62)81 414 257 9980
+                      (+62)82115730185
                     </p>
                   </div>
                 </div>
@@ -101,10 +98,10 @@ const Contact = () => {
                   </div>
                   <div className="w-full">
                     <h4 className="mb-1 text-xl font-bold text-dark">
-                      Email Address
+                      Email
                     </h4>
                     <p className="text-base text-body-color">
-                      info@yourdomain.com
+                      ltm@example.com
                     </p>
                   </div>
                 </div>
@@ -116,17 +113,17 @@ const Contact = () => {
                   <ContactInputBox
                     type="text"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder="Nama Lengkap"
                   />
                   <ContactInputBox
                     type="text"
                     name="email"
-                    placeholder="Your Email"
+                    placeholder="Email"
                   />
                   <ContactInputBox
                     type="text"
                     name="phone"
-                    placeholder="Your Phone"
+                    placeholder="Telepon"
                   />
                   <ContactTextArea
                     row={6}
@@ -139,7 +136,7 @@ const Contact = () => {
                       type="submit"
                       className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
                     >
-                      Send Message
+                      Kirim Pesan
                     </button>
                   </div>
                 </form>
