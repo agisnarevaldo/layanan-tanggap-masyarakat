@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
         // check if the user is exist
         if (rows.length === 0) {
-            return res.status(404).json({ error: "User not found" });
+            return res.status(404).json({ error: "records not found" });
         }
 
         // Close the connection
