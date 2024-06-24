@@ -2,7 +2,15 @@ import React from "react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
 import {Icon} from "@iconify/react";
 
-export default function ModalLogout() {
+
+interface ModalLogoutProps {
+    textColor?: string;
+    bgColor?: string;
+    width?: string;
+    children?: React.ReactNode;
+}
+
+export default function ModalLogout({ textColor, children, bgColor, width }: ModalLogoutProps) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const logout = () => {
@@ -11,14 +19,14 @@ export default function ModalLogout() {
 
     return (
         <>
-            <Button onPress={onOpen} className="flex items-center bg-transparent text-white w-full">
-                <Icon icon="carbon:logout" className="mr-4"/> Logout
+            <Button onPress={onOpen} className={`flex items-center text-${textColor} bg-${bgColor} w-${width}`}>
+                {children}
             </Button>
             <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">Logout</ModalHeader>
+                            <ModalHeader className="flex flex-col gap-1 bg-primary text-white">Keluar</ModalHeader>
                             <ModalBody className="flex flex-col items-center">
                                 <Icon icon="majesticons:door-enter" className="text-primary text-center text-[200px]" />
                                 <p>
