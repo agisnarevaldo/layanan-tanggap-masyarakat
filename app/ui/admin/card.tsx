@@ -1,13 +1,13 @@
 interface CardProps {
     children: React.ReactNode;
     classname?: string;
-    count: number;
+    count: string;
     title: string;
 }
 
 export default function Card({children, classname, count, title}: CardProps) {
     return (
-        <div className={`w-64 h-44 p-4 rounded-3xl ${classname} `}>
+        <div className={`h-44 p-4 rounded-3xl ${classname} `}>
 
             <div className='flex justify-between items-center'>
 
