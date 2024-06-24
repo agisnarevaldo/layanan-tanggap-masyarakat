@@ -1,4 +1,8 @@
+"use client";
+
 import { Icon } from "@iconify/react";
+import ModalLogout from "./modalLogout";
+import ModalEdit from "./modalEdit";
 
 interface CardProfileProps {
   name: string;
@@ -9,7 +13,7 @@ export default function CardProfile({ name, level }: CardProfileProps) {
   return (
     <div className="flex justify-between flex-col gap-7">
       <div className="flex justify-between">
-        <div className="flex  bg-green-900 border-2 p-3 w-3/4 justify-center rounded-xl">
+        <div className="flex  bg-primary border-2 p-3 w-3/4 justify-center rounded-xl">
           <p className="text-white">Dashboard</p>
         </div>
 
@@ -19,7 +23,7 @@ export default function CardProfile({ name, level }: CardProfileProps) {
         </div>
       </div>
       {/* Card Profile */}
-      <div className="border-2 border-green-900 w-[400px] h-[500px] p-4 rounded-3xl text-center flex-col flex justify-evenly">
+      <div className="border-2 border-primary w-[400px] h-[500px] p-4 rounded-3xl text-center flex-col flex justify-evenly">
         <div>
           <Icon
             icon="tdesign:user-circle"
@@ -29,13 +33,11 @@ export default function CardProfile({ name, level }: CardProfileProps) {
           <p className="text-sm">{level}</p>
         </div>
 
-        <div className="flex-col flex gap-3">
-          <button className="bg-green-900 text-white rounded-3xl px-4 py-2 w-44 mx-auto">
-            Edit
-          </button>
-          <button className="bg-red-600 text-white rounded-3xl px-4 py-2 w-44 mx-auto">
+        <div className="flex-col flex gap-3 items-center">
+          <ModalEdit/>
+          <ModalLogout bgColor="red-500" textColor="white" width="44">
             Keluar
-          </button>
+          </ModalLogout>
         </div>
       </div>
       {/* Akhir card */}
