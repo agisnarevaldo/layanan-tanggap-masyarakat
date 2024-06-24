@@ -73,7 +73,7 @@ const DataViewer: React.FC = () => {
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div className='max-w-5xl mx-auto bg-green-800 rounded-lg py-2 px-1'>
+    <div className='max-w-5xl mx-auto bg-primary rounded-lg py-2 px-1'>
       <h1 className='text-white'>Data Laporan</h1>
       <div style={{ overflowX: 'auto' }}>
         <table className="min-w-full bg-white divide-y divide-gray-200 shadow-sm">
@@ -101,7 +101,7 @@ const DataViewer: React.FC = () => {
                   </span>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm font-medium">
-                  <button className="bg-green-700 hover:bg-green-900 text-white font-bold p-2 text-lg rounded-full"
+                  <button className="bg-primary  hover:bg-green-900 text-white font-bold p-2 text-lg rounded-full"
                     onClick={() => handleProcess(item.id)}
                   >
                     <Icon icon="ic:round-checklist" />
